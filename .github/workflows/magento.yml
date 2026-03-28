@@ -1,0 +1,87 @@
+name: Magento 2 CI/CD
+
+on:
+  push:
+    branches:
+      - staging
+      - production
+
+jobs:
+
+  deploy-staging:
+
+    if: github.ref == 'refs/heads/staging'
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Deploy to staging server
+        uses: appleboy/ssh-action@v1.0.3
+
+        with:
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_USER }}
+          key: ${{ secrets.STAGING_SSH_KEY }}
+
+          script: |
+
+            cd /var/www/html/naxmagento-staging
+
+            git pull origin staging
+
+            php bin/magento maintenance:enable
+
+            composer install --no-dev
+
+            php bin/magento setup:upgrade
+
+            php bin/magento setup:di:compile
+
+            php bin/magento setup:static-content:deploy -f
+
+            php bin/magento indexer:reindex
+
+            php bin/magento cache:flush
+
+            php bin/magento maintenance:disable
+
+
+
+  deploy-production:
+
+    if: github.ref == 'refs/heads/production'
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Deploy to production server
+        uses: appleboy/ssh-action@v1.0.3
+
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key: ${{ secrets.PROD_SSH_KEY }}
+
+          script: |
+
+            cd /var/www/html/naxmagento
+
+            git pull origin production
+
+            php bin/magento maintenance:enable
+
+            composer install --no-dev
+
+            php bin/magento setup:upgrade
+
+            php bin/magento setup:di:compile
+
+            php bin/magento setup:static-content:deploy -f
+
+            php bin/magento indexer:reindex
+
+            php bin/magento cache:flush
+
+            php bin/magento maintenance:disable
