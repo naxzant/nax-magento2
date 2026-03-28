@@ -19,8 +19,8 @@ class Index extends Action
         $result = $this->resultFactory->create(ResultFactory::TYPE_RAW);
 
         $html = "
-            <h1>Hello Shubhams your Magento 2 Frontend Controller Working 🎉</h1>
-            <p>This content is coming from frontend controller.</p>
+            <h1>Hello Shubhams your Magento 2 Frontend and commerce Controller Working really great 🎉</h1>
+            <p>This content is coming from frontend controller, Please check</p>
         ";
 
         return $result->setContents($html);
