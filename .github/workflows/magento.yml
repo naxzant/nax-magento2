@@ -1,28 +1,40 @@
 name: Magento 2 CI/CD
 
 on:
+
   push:
     branches:
       - staging
       - production
 
+  pull_request:
+    branches:
+      - staging
+      - production
+    types:
+      - closed
+
+
 jobs:
 
   deploy-staging:
 
-    if: github.ref == 'refs/heads/staging'
+    if: |
+      github.ref == 'refs/heads/staging' ||
+      (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'staging')
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Deploy to staging
+      - name: Deploy to staging server
         uses: appleboy/ssh-action@v1.0.3
 
         with:
           host: ${{ secrets.STAGING_HOST }}
           username: ${{ secrets.STAGING_USER }}
           key: ${{ secrets.STAGING_SSH_KEY }}
+          port: 22
 
           script: |
 
@@ -50,19 +62,22 @@ jobs:
 
   deploy-production:
 
-    if: github.ref == 'refs/heads/production'
+    if: |
+      github.ref == 'refs/heads/production' ||
+      (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'production')
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Deploy to production
+      - name: Deploy to production server
         uses: appleboy/ssh-action@v1.0.3
 
         with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.PROD_USER }}
           key: ${{ secrets.PROD_SSH_KEY }}
+          port: 22
 
           script: |
 
