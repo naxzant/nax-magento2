@@ -56,17 +56,11 @@ jobs:
 
             php bin/magento cache:flush
 
-           ###################################
-            # FIX PERMISSIONS (IMPORTANT)
-            ###################################
-
             chown -R www-data:www-data /var/www/html/naxmagento-staging
 
             find var generated pub/static pub/media app/etc -type f -exec chmod 664 {} \;
 
             find var generated pub/static pub/media app/etc -type d -exec chmod 775 {} \;
-
-            ###################################
 
             php bin/magento maintenance:disable
 
