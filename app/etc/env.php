@@ -34,7 +34,7 @@ return [
         'connection' => [
             'default' => [
                 'host' => 'localhost',
-                'dbname' => 'naxmagento',
+                'dbname' => 'naxmagento_staging',
                 'username' => 'root',
                 'password' => 'Naxzant@2786',
                 'model' => 'mysql4',
