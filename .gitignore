@@ -1,0 +1,7 @@
+/vendor/
+/var/
+/pub/media/
+/generated/
+/node_modules/
+/pub/static/
+/.env
