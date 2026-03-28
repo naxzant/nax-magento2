@@ -5,3 +5,4 @@
 /node_modules/
 /pub/static/
 /.env
+/app/etc/env.php
