@@ -4,7 +4,7 @@ xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
 
     <router id="standard">
 
-        <route id="demo" frontName="demo2">
+        <route id="demo" frontName="demo3">
 
             <module name="Nax_DemoFrontend"/>
 
