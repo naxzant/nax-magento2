@@ -84,6 +84,8 @@ jobs:
           username: ${{ secrets.PROD_USER }}
           key: ${{ secrets.PROD_SSH_KEY }}
           port: 22
+          timeout: 120s
+          command_timeout: 40m
 
           script: |
 
