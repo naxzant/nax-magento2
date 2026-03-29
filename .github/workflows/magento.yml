@@ -94,6 +94,8 @@ jobs:
             git pull origin production
 
             php bin/magento maintenance:enable
+            
+            export COMPOSER_ALLOW_SUPERUSER=1
 
             composer install --no-dev
 
