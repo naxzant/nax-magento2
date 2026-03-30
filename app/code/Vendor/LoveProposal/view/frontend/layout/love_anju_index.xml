@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="empty"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.container" remove="true"/>
+        <referenceBlock name="header" remove="true"/>
+        <referenceBlock name="footer" remove="true"/>
+        <referenceBlock name="copyright" remove="true"/>
+        <referenceContainer name="before.body.end" remove="true"/>
+        <referenceContainer name="root">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="love.proposal.anju"
+                   template="Vendor_LoveProposal::love.phtml">
+                <arguments>
+                    <argument name="recipient_name" xsi:type="string">ANJU</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
