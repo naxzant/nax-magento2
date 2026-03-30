@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\LoveProposal\Controller\Anju;
+namespace Vendor\LoveProposal\Controller\Anjusdd;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
